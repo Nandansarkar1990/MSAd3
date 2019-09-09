@@ -1,0 +1,3 @@
+<select (change)="selectedChart()" [(ngModel)]="selectedProduct">
+  <option *ngFor="let item of examples" [value]="item.title">{{item.title}}</option>
+</select>

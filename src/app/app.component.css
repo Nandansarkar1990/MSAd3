@@ -1,0 +1,26 @@
+h1 {
+    text-align:center
+}
+
+mat-drawer-content {
+    padding: 20px;
+}
+/* mat-drawer {
+    background-color: #2A3F54;
+} */
+.mat-menu-item {
+    color: antiquewhite;
+}
+
+app-drop-down {
+    float: right;
+}
+
+.msaLogo {
+    background-color: black;
+}
+
+.exportBtn {
+    float: right;
+    left: 50px;
+}
