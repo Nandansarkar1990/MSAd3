@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ExportToCsv } from 'export-to-csv';
+import {ExportExcelService} from '../export-excel.service'
 
 import { tableData } from '../shared/table'
 import { STOCKS } from '../shared';
@@ -33,7 +34,7 @@ export class ExportComponent implements OnInit {
     useBom: true,
     useKeysAsHeaders: true,
   };
-  constructor(public router: Router) { }
+  constructor(public router: Router, private excelService: ExportExcelService) { }
 
   ngOnInit() {
   }
@@ -72,5 +73,8 @@ export class ExportComponent implements OnInit {
     csvExporter.generateCsv(this.sampleData);
   }
 
-  
+  exportFileAsExcel() {
+    this.getData();
+    this.excelService.exportAsExcelFile(this.sampleData, 'excelFile');
+  }
 }
