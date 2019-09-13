@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
@@ -22,7 +22,8 @@ export interface Margin {
     styleUrls: ['./stacked-bar-chart.component.css']
 })
 export class StackedBarChartComponent implements OnInit {
-
+    @Input() stackWidth: number;
+    @Input() stackHeight: number;
     title = 'Stacked Bar Chart';
 
     private margin: Margin;
@@ -50,10 +51,10 @@ export class StackedBarChartComponent implements OnInit {
     }
 
     private initSvg() {
-        this.svg = d3.select('svg');
+        this.svg = d3.select('#svg3');
 
-        this.width = +this.svg.attr('width') - this.margin.left - this.margin.right;
-        this.height = +this.svg.attr('height') - this.margin.top - this.margin.bottom;
+        this.width = this.stackWidth ? this.stackWidth : +this.svg.attr('width') - this.margin.left - this.margin.right;
+        this.height = this.stackHeight ? this.stackHeight : +this.svg.attr('height') - this.margin.top - this.margin.bottom;
         this.g = this.svg.append('g').attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 
         this.x = d3Scale.scaleBand()

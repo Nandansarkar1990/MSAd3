@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
@@ -15,7 +15,8 @@ import { STOCKS } from '../shared';
     styleUrls: ['./line-chart.component.css']
 })
 export class LineChartComponent implements OnInit {
-
+    @Input() lineWidth: number;
+    @Input() lineHeight: number;
     title = 'Line Chart';
 
     private margin = {top: 20, right: 20, bottom: 30, left: 50};
@@ -32,6 +33,8 @@ export class LineChartComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.width = this.lineWidth ? this.lineWidth : 900 - this.margin.left - this.margin.right;
+        this.height = this.lineHeight ? this.lineHeight : 500 - this.margin.top - this.margin.bottom;
         this.initSvg();
         this.initAxis();
         this.drawAxis();
@@ -39,7 +42,7 @@ export class LineChartComponent implements OnInit {
     }
 
     private initSvg() {
-        this.svg = d3.select('svg')
+        this.svg = d3.select('#svg1')
             .append('g')
             .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
     }

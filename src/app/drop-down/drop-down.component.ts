@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./drop-down.component.css']
 })
 export class DropDownComponent implements OnInit {
-  selectedProduct = 'Table';
+  selectedProduct = 'Dashboard';
   selectedObj = null;
 
   constructor(private router: Router) { }
@@ -17,6 +17,10 @@ export class DropDownComponent implements OnInit {
   }
 
   examples = [
+    {
+      title: 'Dashboard',
+      route: '/dashboard'
+    },
     {
       title: 'Table',
       route: '/table-view'

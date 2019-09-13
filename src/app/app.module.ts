@@ -19,8 +19,10 @@ import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
 import { jqxTreeModule } from 'jqwidgets-ng/jqxtree';
 import { DataTableComponent } from './data-table/data-table.component';
 import { ExportComponent } from './export/export.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
+    {path: 'dashboard', component: DashboardComponent },
     {path: 'table-view', component: DataTableComponent},
     { path: 'line-chart', component: LineChartComponent },
     { path: 'multi-series', component: MultiSeriesComponent },
@@ -30,7 +32,7 @@ const appRoutes: Routes = [
     { path: 'pie-chart', component: PieChartComponent },
     { path: 'donut-chart', component: DonutChartComponent },
     { path: '',
-        redirectTo: '/table-view',
+        redirectTo: '/dashboard',
         pathMatch: 'full'
     },
     { path: '**', component: LineChartComponent }
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
         DropDownComponent,
         SideNavBarComponent,
         DataTableComponent,
-        ExportComponent
+        ExportComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,

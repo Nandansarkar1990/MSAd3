@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 
 import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
@@ -14,7 +14,8 @@ import { STATISTICS } from '../shared';
     styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
-
+    @Input() barHeight: number;
+    @Input() barWidth: number;
     title = 'Bar Chart';
 
     private width: number;
@@ -36,9 +37,10 @@ export class BarChartComponent implements OnInit {
     }
 
     private initSvg() {
-        this.svg = d3.select('svg');
-        this.width = +this.svg.attr('width') - this.margin.left - this.margin.right;
-        this.height = +this.svg.attr('height') - this.margin.top - this.margin.bottom;
+        this.svg = d3.select('#svg2');
+        console.log("bar chart width", this.barWidth)
+        this.width = this.barWidth ? this.barWidth : +this.svg.attr('width') - this.margin.left - this.margin.right;
+        this.height = this.barHeight ? this.barHeight : +this.svg.attr('height') - this.margin.top - this.margin.bottom;
         this.g = this.svg.append('g')
             .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
     }
